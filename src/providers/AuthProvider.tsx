@@ -71,7 +71,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(userData));
     setUser(userData);
 
-    toast.success('Login successful!');
+    window.location.href = '/';
     return userData;
   }, []);
 
@@ -84,7 +84,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(userData));
     setUser(userData);
 
-    toast.success('Registration successful!');
+    window.location.href = '/';
     return userData;
   }, []);
 
@@ -100,7 +100,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(userData));
     setUser(userData);
 
-    toast.success('Google login successful!');
+    window.location.href = '/';
     return userData;
   }, []);
 
