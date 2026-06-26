@@ -6,7 +6,6 @@ AI Prompt Marketplace — Discover, create, and share AI prompts across categori
 
 **Frontend:** [https://promptverse-client-beta.vercel.app](https://promptverse-client-beta.vercel.app)
 
-**Backend:** [https://promptverse-server-kfuw.onrender.com](https://promptverse-server-kfuw.onrender.com)
 
 <=== Key Features ===>
 
@@ -74,6 +73,52 @@ html2canvas@^1.4.1
 jspdf@^4.2.1
 clsx@^2.1.1
 ```
+
+## Tech Stack (Server)
+
+| Technology | Purpose |
+|------------|---------|
+| Node.js | Runtime environment |
+| Express 5 | Web framework |
+| MongoDB | Database |
+| Mongoose 9 | ODM for MongoDB |
+| Socket.io | Real-time WebSocket server |
+| Firebase Admin | Google OAuth verification |
+| JWT | Access & refresh token auth |
+| bcrypt | Password hashing |
+| Stripe | Payment processing |
+| Cloudinary | Image/file storage |
+| OpenAI SDK | ChatGPT, Claude, Copilot API |
+| Google Generative AI | Gemini API |
+
+## API Routes
+
+| Route Group | Purpose |
+|-------------|---------|
+| `/api/v1/auth` | Registration, login, token refresh, Firebase OAuth |
+| `/api/v1/prompts` | CRUD, search, filtering, trending |
+| `/api/v1/reviews` | Reviews and ratings |
+| `/api/v1/bookmarks` | Bookmark/unbookmark prompts |
+| `/api/v1/reports` | Content moderation reports |
+| `/api/v1/payments` | Stripe payment initiation and status |
+| `/api/v1/webhook` | Stripe webhook handler |
+| `/api/v1/users` | User profile management |
+| `/api/v1/dashboard` | User/creator dashboard data |
+| `/api/v1/admin` | Moderation, user management, analytics |
+| `/api/v1/upload` | Cloudinary file uploads |
+| `/api/v1/ai` | Live AI prompt testing |
+| `/api/v1/health` | Health check endpoint |
+
+## Data Models
+
+| Model | Description |
+|-------|-------------|
+| User | Users with roles (user/creator/admin), premium status |
+| Prompt | Prompts with content, category, AI tool, difficulty, trending score |
+| Review | Star ratings and comments on prompts |
+| Bookmark | User prompt bookmarks |
+| Report | Content moderation reports |
+| Payment | Stripe payment records |
 
 ### Dev Dependencies
 
