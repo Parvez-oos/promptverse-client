@@ -15,6 +15,7 @@ export interface IPrompt {
   title: string;
   description: string;
   content: string;
+  usageInstructions?: string;
   category: string;
   aiTool: string;
   tags: string[];

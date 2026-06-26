@@ -608,6 +608,7 @@ export default function PromptDetailsPage() {
                                 </div>
                                 <div>
                                   <p className="text-sm font-semibold">{review.user?.name || 'Anonymous'}</p>
+                                  <p className="text-[11px] text-base-content/40">{review.user?.email}</p>
                                   <p className="text-[11px] text-base-content/40">{formatDate(review.createdAt)}</p>
                                 </div>
                               </div>
