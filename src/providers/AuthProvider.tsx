@@ -109,7 +109,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem(STORAGE_KEYS.REFRESH_TOKEN);
     localStorage.removeItem(STORAGE_KEYS.USER);
     setUser(null);
-    toast.success('Logged out successfully.');
+    window.location.href = '/';
   }, []);
 
   const updateUser = useCallback((updatedUser: IUser) => {
