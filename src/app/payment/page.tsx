@@ -111,7 +111,7 @@ export default function PaymentPage() {
         updateUser({ ...user, isPremium: true });
       }
       toast.success('Welcome to Premium!');
-      router.back();
+      window.location.href = '/dashboard/profile';
     } catch (error: any) {
       const message = error?.response?.data?.message || 'Payment confirmation failed.';
       try {
@@ -119,7 +119,7 @@ export default function PaymentPage() {
         if (freshUser.data?.isPremium) {
           updateUser(freshUser.data);
           toast.success('Welcome to Premium!');
-          router.back();
+          window.location.href = '/dashboard/profile';
           return;
         }
       } catch {}
