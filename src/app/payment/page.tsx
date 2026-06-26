@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { FiCheck, FiLock, FiStar, FiZap, FiShield, FiArrowLeft } from 'react-icons/fi';
 import { paymentService } from '@/services/paymentService';
+import { authService } from '@/services/authService';
 import { useAuth } from '@/providers/AuthProvider';
 import toast from 'react-hot-toast';
 
@@ -103,22 +104,26 @@ export default function PaymentPage() {
       }
 
       await paymentService.confirm(response.data.paymentIntentId);
-      if (user) {
+      const freshUser = await authService.getMe();
+      if (freshUser.data) {
+        updateUser(freshUser.data);
+      } else if (user) {
         updateUser({ ...user, isPremium: true });
       }
       toast.success('Welcome to Premium!');
       router.back();
     } catch (error: any) {
-      const message = error?.response?.data?.message || 'Payment failed. Please try again.';
-      if (message === 'Payment already processed.') {
-        if (user) {
-          updateUser({ ...user, isPremium: true });
+      const message = error?.response?.data?.message || 'Payment confirmation failed.';
+      try {
+        const freshUser = await authService.getMe();
+        if (freshUser.data?.isPremium) {
+          updateUser(freshUser.data);
+          toast.success('Welcome to Premium!');
+          router.back();
+          return;
         }
-        toast.success('Welcome to Premium!');
-        router.back();
-        return;
-      }
-      toast.error(message);
+      } catch {}
+      toast.error(message + ' Contact support if charged.');
     } finally {
       setLoading(false);
     }
