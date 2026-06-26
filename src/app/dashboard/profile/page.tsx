@@ -18,7 +18,7 @@ export default function ProfilePage() {
   const queryClient = useQueryClient();
 
   const { data, isLoading } = useQuery({
-    queryKey: ['userProfile'],
+    queryKey: ['userProfile', user?._id],
     queryFn: () => userService.getProfile(),
     enabled: !!user,
   });
@@ -32,8 +32,8 @@ export default function ProfilePage() {
       if (user) {
         updateUser({ ...user, name: updated.name, photoURL: updated.photoURL });
       }
-      queryClient.setQueryData(['userProfile'], { data: updated });
-      queryClient.invalidateQueries({ queryKey: ['userProfile'] });
+      queryClient.setQueryData(['userProfile', user?._id], { data: updated });
+      queryClient.invalidateQueries({ queryKey: ['userProfile', user?._id] });
       toast.success('Profile updated.');
       setEditing(false);
     },
